@@ -3,7 +3,6 @@ import {
   InMemoryCache,
   HttpLink,
   split,
-  InMemoryCacheConfig,
   NormalizedCacheObject,
 } from "@apollo/client";
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
