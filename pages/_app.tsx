@@ -1,11 +1,14 @@
 import { ApolloProvider } from "@apollo/client";
 import type { AppProps } from "next/app";
+import { ChakraProvider } from "@chakra-ui/react";
 import { createApolloClient } from "../lib/apolloClient";
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <ApolloProvider client={createApolloClient({})}>
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <ChakraProvider>
+      <ApolloProvider client={createApolloClient({})}>
+        <Component {...pageProps} />
+      </ApolloProvider>
+    </ChakraProvider>
   );
 }
