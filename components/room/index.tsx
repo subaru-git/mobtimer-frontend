@@ -1,24 +1,21 @@
 import React, { FC } from "react";
 import { useSubscription, gql } from "@apollo/client";
 
-const Rooms: FC = () => {
-  const { data, loading, error } = useSubscription(
-    gql`
-      subscription notifyAddedRoom {
-        roomAdded {
-          name
-        }
-      }
-    `
-  );
-  if (loading) return <p>Loading...</p>;
-  if (error) {
-    console.error(error);
-    return <p>Error :(</p>;
-  }
-  console.log(data);
+type RoomsProps = {
+  error: string;
+  room: {
+    name: string;
+    topic: string;
+  };
+};
 
-  return <p>data={data.roomAdded.name}</p>;
+const Rooms: FC<RoomsProps> = ({ error, room: { name, topic } }) => {
+  return (
+    <>
+      <p>data={name}</p>
+      <p>topic={topic}</p>
+    </>
+  );
 };
 
 export default Rooms;

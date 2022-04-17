@@ -1,14 +1,16 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
+import Rooms from "../components/room";
 
 let created = false;
 const Room: FC = () => {
   const { query } = useRouter();
-  const { loading, error, data, refetch } = useQuery(gql`
+  const { loading, error, data, refetch, subscribeToMore } = useQuery(gql`
     query {
       find(name: "${query.room}") {
         name
+        topic
       }
     }`);
   const [createRoom, mutation] = useMutation(
@@ -16,6 +18,7 @@ const Room: FC = () => {
       mutation addRoom($name: String!) {
         createRoom(name: $name) {
           name
+          topic
         }
       }
     `,
@@ -32,7 +35,6 @@ const Room: FC = () => {
     console.error(mutation.error);
     return <p>Error :(</p>;
   }
-  console.log(data);
   if (!data.find) {
     console.log("created");
     if (!created) {
@@ -41,7 +43,23 @@ const Room: FC = () => {
     }
     return <p>Creating room...</p>;
   }
-  return <p>data={data.find.name}</p>;
+  subscribeToMore({
+    document: gql`
+      subscription notifyAddedRoom {
+        roomUpdated {
+          name
+          topic
+        }
+      }
+    `,
+    updateQuery: (prev, { subscriptionData }) => {
+      if (!subscriptionData.data) return prev;
+      return Object.assign({}, prev, {
+        find: subscriptionData.data.roomUpdated,
+      });
+    },
+  });
+  return <Rooms room={data.find} error={""} />;
 };
 
 export default Room;
