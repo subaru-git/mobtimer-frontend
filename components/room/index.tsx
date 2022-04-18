@@ -1,6 +1,7 @@
 import React, { FC, useRef, useState } from "react";
 import { useSubscription, gql, useMutation } from "@apollo/client";
 import { Button, Input } from "@chakra-ui/react";
+import CountdownTimer from "./CountdownTimer";
 
 type RoomsProps = {
   error: string;
@@ -36,6 +37,7 @@ const Rooms: FC<RoomsProps> = ({ error, room: { name, topic } }) => {
       >
         update
       </Button>
+      <CountdownTimer date={new Date(Date.now() + 10000)} />
     </>
   );
 };
