@@ -45,13 +45,14 @@ const Room: FC = () => {
   }
   subscribeToMore({
     document: gql`
-      subscription notifyAddedRoom {
-        roomUpdated {
+      subscription notifyAddedRoom($name: String!) {
+        roomUpdated(name: $name) {
           name
           topic
         }
       }
     `,
+    variables: { name: query.room },
     updateQuery: (prev, { subscriptionData }) => {
       if (!subscriptionData.data) return prev;
       return Object.assign({}, prev, {
