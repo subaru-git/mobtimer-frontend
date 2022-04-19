@@ -3,6 +3,8 @@ import { useSubscription, gql, useMutation } from "@apollo/client";
 import { Button, Input } from "@chakra-ui/react";
 import CountdownTimer from "./CountdownTimer";
 import SettingSlider from "./SettingSlider";
+import AppBar from "./AppBar";
+import TimerControl from "./TimerControl";
 
 type RoomsProps = {
   error: string;
@@ -23,6 +25,8 @@ const Rooms: FC<RoomsProps> = ({ error, room: { name, topic } }) => {
   `);
   return (
     <>
+      <AppBar />
+      <TimerControl />
       <p>data={name}</p>
       <p>topic={topic}</p>
       <Input
@@ -38,7 +42,6 @@ const Rooms: FC<RoomsProps> = ({ error, room: { name, topic } }) => {
       >
         update
       </Button>
-      <CountdownTimer date={new Date(Date.now() + 10000)} />
       <SettingSlider min={0} max={30} step={5} initialValue={15} />
     </>
   );
