@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { MdBuild } from "react-icons/md";
+import MemberSetting from "./MemberSetting";
 import SettingSlider from "./SettingSlider";
 
 const SettingDrawer: FC = () => {
@@ -47,6 +48,7 @@ const SettingDrawer: FC = () => {
                 <NumberDecrementStepper />
               </NumberInputStepper>
             </NumberInput>
+            <MemberSetting />
           </DrawerBody>
         </DrawerContent>
       </Drawer>
