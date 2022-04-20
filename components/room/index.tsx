@@ -6,6 +6,7 @@ import SettingSlider from "./SettingSlider";
 import AppBar from "./AppBar";
 import TimerControl from "./TimerControl";
 import MemberList from "./MemberList";
+import Topic from "./Topic";
 
 type RoomsProps = {
   error: string;
@@ -16,7 +17,6 @@ type RoomsProps = {
 };
 
 const Rooms: FC<RoomsProps> = ({ error, room: { name, topic } }) => {
-  const [newTopic, setNewTopic] = useState("");
   const [updateRoom] = useMutation(gql`
     mutation updateRoom($name: String!, $topic: String!) {
       updateRoom(name: $name, topic: $topic) {
@@ -35,21 +35,12 @@ const Rooms: FC<RoomsProps> = ({ error, room: { name, topic } }) => {
           <MemberList />
         </GridItem>
       </Grid>
-      <p>data={name}</p>
-      <p>topic={topic}</p>
-      <Input
-        onChange={(e) => {
-          setNewTopic(e.target.value);
+      <Topic
+        topic={topic}
+        updateTopic={(topic) => {
+          updateRoom({ variables: { name, topic } });
         }}
-        placeholder="topic"
       />
-      <Button
-        onClick={() => {
-          updateRoom({ variables: { name, topic: newTopic } });
-        }}
-      >
-        update
-      </Button>
       <SettingSlider min={0} max={30} step={5} initialValue={15} />
     </>
   );
