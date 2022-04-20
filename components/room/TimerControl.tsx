@@ -21,12 +21,12 @@ const TimerControl: FC = () => {
           <CountdownTimer date={new Date(Date.now() + 10000)} />
         </Center>
         <Center>
-          <Text fontSize="4xl">
-            <HStack alignItems="center" spacing="24px">
+          <HStack alignItems="center" spacing="24px">
+            <Text fontSize="4xl">
               <MdOutlineDriveEta />
-              <Box>The next driver is you!</Box>
-            </HStack>
-          </Text>
+            </Text>
+            <Text fontSize="4xl">The next driver is you!</Text>
+          </HStack>
         </Center>
       </Box>
       <Center>
