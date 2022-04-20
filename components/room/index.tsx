@@ -1,10 +1,11 @@
 import React, { FC, useRef, useState } from "react";
 import { useSubscription, gql, useMutation } from "@apollo/client";
-import { Button, Input } from "@chakra-ui/react";
+import { Button, Flex, Grid, GridItem, Input } from "@chakra-ui/react";
 import CountdownTimer from "./CountdownTimer";
 import SettingSlider from "./SettingSlider";
 import AppBar from "./AppBar";
 import TimerControl from "./TimerControl";
+import MemberList from "./MemberList";
 
 type RoomsProps = {
   error: string;
@@ -26,7 +27,14 @@ const Rooms: FC<RoomsProps> = ({ error, room: { name, topic } }) => {
   return (
     <>
       <AppBar />
-      <TimerControl />
+      <Grid templateColumns="repeat(5, 1fr)" gap={4}>
+        <GridItem colSpan={4}>
+          <TimerControl />
+        </GridItem>
+        <GridItem colEnd={6}>
+          <MemberList />
+        </GridItem>
+      </Grid>
       <p>data={name}</p>
       <p>topic={topic}</p>
       <Input
