@@ -7,6 +7,7 @@ import AppBar from "./AppBar";
 import TimerControl from "./TimerControl";
 import MemberList from "./MemberList";
 import Topic from "./Topic";
+import SettingDrawer from "./SettingDrawer";
 
 type RoomsProps = {
   error: string;
@@ -27,6 +28,7 @@ const Rooms: FC<RoomsProps> = ({ error, room: { name, topic } }) => {
   return (
     <>
       <AppBar />
+      <SettingDrawer />
       <Grid templateColumns="repeat(5, 1fr)" gap={4}>
         <GridItem colSpan={4}>
           <TimerControl />
@@ -41,7 +43,6 @@ const Rooms: FC<RoomsProps> = ({ error, room: { name, topic } }) => {
           updateRoom({ variables: { name, topic } });
         }}
       />
-      <SettingSlider min={0} max={30} step={5} initialValue={15} />
     </>
   );
 };
