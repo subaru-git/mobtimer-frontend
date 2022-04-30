@@ -8,27 +8,26 @@ import TimerControl from "./TimerControl";
 import MemberList from "./MemberList";
 import Topic from "./Topic";
 import SettingDrawer from "./SettingDrawer";
+import { convertToInput } from "../../lib/convertToInput";
 
 type RoomsProps = {
   error: string;
-  room: {
-    name: string;
-    topic: string;
-  };
+  room: Room;
 };
 
-const Rooms: FC<RoomsProps> = ({ error, room: { name, topic } }) => {
+const Rooms: FC<RoomsProps> = ({ error, room }) => {
   const [updateRoom] = useMutation(gql`
-    mutation updateRoom($name: String!, $topic: String!) {
-      updateRoom(name: $name, topic: $topic) {
+    mutation updateRoom($room: RoomInput!) {
+      updateRoom(room: $room) {
         name
       }
     }
   `);
+
   return (
     <>
       <AppBar />
-      <SettingDrawer />
+      <SettingDrawer room={room} />
       <Grid templateColumns="repeat(5, 1fr)" gap={4}>
         <GridItem colSpan={4}>
           <TimerControl />
@@ -38,9 +37,13 @@ const Rooms: FC<RoomsProps> = ({ error, room: { name, topic } }) => {
         </GridItem>
       </Grid>
       <Topic
-        topic={topic}
+        topic={room.topic}
         updateTopic={(topic) => {
-          updateRoom({ variables: { name, topic } });
+          updateRoom({
+            variables: {
+              room: { ...convertToInput(room), topic },
+            },
+          });
         }}
       />
     </>

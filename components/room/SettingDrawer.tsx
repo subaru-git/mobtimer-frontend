@@ -19,7 +19,11 @@ import { MdBuild } from "react-icons/md";
 import MemberSetting from "./MemberSetting";
 import SettingSlider from "./SettingSlider";
 
-const SettingDrawer: FC = () => {
+type SettingDrawerProps = { room: Room };
+
+const SettingDrawer: FC<SettingDrawerProps> = ({
+  room: { worktime, breaktime, breakcount, members },
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -37,18 +41,18 @@ const SettingDrawer: FC = () => {
           <DrawerHeader>Mob Timer Settings</DrawerHeader>
           <DrawerBody>
             <Text as="sub">Work Time</Text>
-            <SettingSlider min={0} max={60} step={1} initialValue={15} />
+            <SettingSlider min={0} max={60} step={1} initialValue={worktime} />
             <Text as="sub">Break Time</Text>
-            <SettingSlider min={0} max={60} step={1} initialValue={15} />
+            <SettingSlider min={0} max={60} step={1} initialValue={breaktime} />
             <Text as="sub">Break Count</Text>
-            <NumberInput>
+            <NumberInput defaultValue={breakcount}>
               <NumberInputField />
               <NumberInputStepper>
                 <NumberIncrementStepper />
                 <NumberDecrementStepper />
               </NumberInputStepper>
             </NumberInput>
-            <MemberSetting />
+            <MemberSetting member={members} />
           </DrawerBody>
         </DrawerContent>
       </Drawer>

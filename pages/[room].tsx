@@ -11,6 +11,10 @@ const Room: FC = () => {
       find(name: "${query.room}") {
         name
         topic
+        worktime
+        breaktime
+        breakcount
+        members
       }
     }`);
   const [createRoom, mutation] = useMutation(
@@ -19,6 +23,10 @@ const Room: FC = () => {
         createRoom(name: $name) {
           name
           topic
+          worktime
+          breaktime
+          breakcount
+          members
         }
       }
     `,
@@ -49,6 +57,10 @@ const Room: FC = () => {
         roomUpdated(name: $name) {
           name
           topic
+          worktime
+          breaktime
+          breakcount
+          members
         }
       }
     `,

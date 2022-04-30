@@ -2,9 +2,10 @@ import React, { FC } from "react";
 import { Text } from "@chakra-ui/react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
-const MemberSetting: FC = () => {
-  const data = ["driver", "navigator", "mob", "mob"];
-  const [members, setMembers] = React.useState(data);
+type MemberSettingProps = { member: string[] };
+
+const MemberSetting: FC<MemberSettingProps> = ({ member }) => {
+  const [members, setMembers] = React.useState(member);
   const reorder = (list: string[], start: number, end: number) => {
     const result = Array.from(list);
     const [removed] = result.splice(start, 1);
