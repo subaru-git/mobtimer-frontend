@@ -69,7 +69,7 @@ const MemberSetting: FC<MemberSettingProps> = ({ members, updateMember }) => {
                           variant="ghost"
                           icon={<MdOutlineDeleteForever />}
                           onClick={(e) => {
-                            updateMember(members.filter((m) => m !== member));
+                            updateMember(members.filter((_, i) => i !== index));
                           }}
                         />
                       </Flex>
