@@ -58,7 +58,7 @@ const MemberSetting: FC<MemberSettingProps> = ({ members, updateMember }) => {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      <Text fontSize="3xl">{member}</Text>
+                      <Text fontSize="2xl">{member}</Text>
                     </div>
                   )}
                 </Draggable>
