@@ -71,7 +71,19 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ room }) => {
               }}
             />
             <Text as="sub">Break Count</Text>
-            <NumberInput defaultValue={breakcount}>
+            <NumberInput
+              value={breakcount}
+              onChange={(value) => {
+                updateRoom({
+                  variables: {
+                    room: {
+                      ...convertToInput(room),
+                      breakcount: parseInt(value),
+                    },
+                  },
+                });
+              }}
+            >
               <NumberInputField />
               <NumberInputStepper>
                 <NumberIncrementStepper />
