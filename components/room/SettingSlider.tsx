@@ -14,17 +14,16 @@ import {
 type SettingSliderProps = {
   min: number;
   max: number;
-  step: number;
-  initialValue: number;
+  value: number;
+  onUpdate: (value: number) => void;
 };
 
 const SettingSlider: FC<SettingSliderProps> = ({
   min,
   max,
-  step,
-  initialValue,
+  value,
+  onUpdate,
 }) => {
-  const [value, setValue] = useState(initialValue);
   return (
     <Flex>
       <Slider
@@ -33,7 +32,7 @@ const SettingSlider: FC<SettingSliderProps> = ({
         step={1}
         value={value}
         onChange={(value) => {
-          setValue(value);
+          onUpdate(value);
         }}
         flex="1"
         focusThumbOnChange={false}
@@ -48,7 +47,7 @@ const SettingSlider: FC<SettingSliderProps> = ({
         step={1}
         onChange={(value) => {
           if (!value) value = "0";
-          setValue(parseInt(value));
+          onUpdate(parseInt(value));
         }}
         maxW="100px"
         ml="2rem"

@@ -16,15 +16,23 @@ import {
 } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { MdBuild } from "react-icons/md";
+import { gql, useMutation } from "@apollo/client";
 import MemberSetting from "./MemberSetting";
 import SettingSlider from "./SettingSlider";
+import { convertToInput } from "../../lib/convertToInput";
 
 type SettingDrawerProps = { room: Room };
 
-const SettingDrawer: FC<SettingDrawerProps> = ({
-  room: { worktime, breaktime, breakcount, members },
-}) => {
+const SettingDrawer: FC<SettingDrawerProps> = ({ room }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { worktime, breaktime, breakcount, members } = room;
+  const [updateRoom] = useMutation(gql`
+    mutation updateRoom($room: RoomInput!) {
+      updateRoom(room: $room) {
+        name
+      }
+    }
+  `);
   return (
     <>
       <Button
@@ -41,9 +49,27 @@ const SettingDrawer: FC<SettingDrawerProps> = ({
           <DrawerHeader>Mob Timer Settings</DrawerHeader>
           <DrawerBody>
             <Text as="sub">Work Time</Text>
-            <SettingSlider min={0} max={60} step={1} initialValue={worktime} />
+            <SettingSlider
+              min={0}
+              max={60}
+              value={worktime}
+              onUpdate={(worktime) => {
+                updateRoom({
+                  variables: { room: { ...convertToInput(room), worktime } },
+                });
+              }}
+            />
             <Text as="sub">Break Time</Text>
-            <SettingSlider min={0} max={60} step={1} initialValue={breaktime} />
+            <SettingSlider
+              min={0}
+              max={60}
+              value={breaktime}
+              onUpdate={(breaktime) => {
+                updateRoom({
+                  variables: { room: { ...convertToInput(room), breaktime } },
+                });
+              }}
+            />
             <Text as="sub">Break Count</Text>
             <NumberInput defaultValue={breakcount}>
               <NumberInputField />
