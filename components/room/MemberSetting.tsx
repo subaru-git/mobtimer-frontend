@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
-import { Input, Text } from "@chakra-ui/react";
+import { Input, Text, IconButton, Flex, Spacer } from "@chakra-ui/react";
+import { MdOutlineDeleteForever } from "react-icons/md";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 type MemberSettingProps = {
@@ -58,7 +59,20 @@ const MemberSetting: FC<MemberSettingProps> = ({ members, updateMember }) => {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      <Text fontSize="2xl">{member}</Text>
+                      <Flex>
+                        <Text fontSize="2xl" isTruncated>
+                          {member}
+                        </Text>
+                        <Spacer />
+                        <IconButton
+                          aria-label="delete member"
+                          variant="ghost"
+                          icon={<MdOutlineDeleteForever />}
+                          onClick={(e) => {
+                            updateMember(members.filter((m) => m !== member));
+                          }}
+                        />
+                      </Flex>
                     </div>
                   )}
                 </Draggable>
