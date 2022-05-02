@@ -1,11 +1,14 @@
-import React, { FC } from "react";
-import { Text } from "@chakra-ui/react";
+import React, { FC, useState } from "react";
+import { Input, Text } from "@chakra-ui/react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
-type MemberSettingProps = { member: string[] };
+type MemberSettingProps = {
+  members: string[];
+  updateMember: (members: string[]) => void;
+};
 
-const MemberSetting: FC<MemberSettingProps> = ({ member }) => {
-  const [members, setMembers] = React.useState(member);
+const MemberSetting: FC<MemberSettingProps> = ({ members, updateMember }) => {
+  const [add, setAdd] = useState("");
   const reorder = (list: string[], start: number, end: number) => {
     const result = Array.from(list);
     const [removed] = result.splice(start, 1);
@@ -21,11 +24,24 @@ const MemberSetting: FC<MemberSettingProps> = ({ member }) => {
       result.source.index,
       result.destination.index
     );
-    setMembers(newMembers);
+    updateMember(newMembers);
   };
   return (
     <>
       <Text as="sub">Members</Text>
+      <Input
+        onChange={(e) => {
+          setAdd(e.target.value);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            updateMember([...members, add]);
+            setAdd("");
+            e.currentTarget.value = "";
+          }
+        }}
+        placeholder="add new member"
+      />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (

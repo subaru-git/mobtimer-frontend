@@ -90,7 +90,19 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ room }) => {
                 <NumberDecrementStepper />
               </NumberInputStepper>
             </NumberInput>
-            <MemberSetting member={members} />
+            <MemberSetting
+              members={members}
+              updateMember={(members) => {
+                updateRoom({
+                  variables: {
+                    room: {
+                      ...convertToInput(room),
+                      members,
+                    },
+                  },
+                });
+              }}
+            />
           </DrawerBody>
         </DrawerContent>
       </Drawer>
