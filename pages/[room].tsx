@@ -15,6 +15,9 @@ const Room: FC = () => {
         breaktime
         breakcount
         members
+        maintimer
+        createdAt
+        updatedAt
       }
     }`);
   const [createRoom, mutation] = useMutation(
@@ -27,6 +30,9 @@ const Room: FC = () => {
           breaktime
           breakcount
           members
+          maintimer
+          createdAt
+          updatedAt
         }
       }
     `,
@@ -61,6 +67,9 @@ const Room: FC = () => {
           breaktime
           breakcount
           members
+          maintimer
+          createdAt
+          updatedAt
         }
       }
     `,

@@ -33,7 +33,7 @@ const Rooms: FC<RoomsProps> = ({ error, room }) => {
           <TimerControl />
         </GridItem>
         <GridItem colEnd={6}>
-          <MemberList />
+          <MemberList members={room.members} />
         </GridItem>
       </Grid>
       <Topic

@@ -9,7 +9,21 @@ import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { createClient } from "graphql-ws";
 
-const httpLink = new HttpLink({ uri: "http://localhost:3001/graphql" });
+const httpLink = new HttpLink({
+  uri: "http://localhost:3001/graphql",
+  fetch: (input, init) => {
+    const body = init?.body && JSON.parse(init.body.toString());
+    // const operations = body.map((ops: any) => ops.operationName);
+
+    console.log({
+      startTime: new Date(),
+      url: input,
+      method: init?.method,
+      body,
+    });
+    return fetch(input, init);
+  },
+});
 const wsLink =
   typeof window !== "undefined"
     ? new GraphQLWsLink(createClient({ url: "ws://localhost:3001/graphql" }))

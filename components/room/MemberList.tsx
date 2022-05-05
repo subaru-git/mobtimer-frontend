@@ -3,8 +3,11 @@ import { Text, Stack, Box, Grid, GridItem, Center } from "@chakra-ui/react";
 import { MdOutlineDriveEta } from "react-icons/md";
 import { GrMapLocation } from "react-icons/gr";
 
-const MemberList: FC = () => {
-  const members = ["driver", "navigator", "mob", "mob"];
+type MemberListProps = {
+  members: string[];
+};
+
+const MemberList: FC<MemberListProps> = ({ members }) => {
   const current = 0;
   return (
     <Stack>
