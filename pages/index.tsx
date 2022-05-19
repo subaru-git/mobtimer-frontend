@@ -6,12 +6,6 @@ import Top from "../components/top";
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Mob Timer</title>
-        <meta name="description" content="The timer for mob programming" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className={styles.main}>
         <Top />
       </main>
