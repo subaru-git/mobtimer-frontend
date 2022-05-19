@@ -7,6 +7,7 @@ import { Box, Button, Center, HStack, Text, Stack } from "@chakra-ui/react";
 import Timer from "./Timer";
 import { convertToInput } from "../../lib/convertToInput";
 import TimerButton from "./TimerButton";
+import { roundMembers } from "../../lib/roundMembers";
 
 type TimerControlProps = {
   room: Room;
@@ -29,7 +30,11 @@ const TimerControl: FC<TimerControlProps> = ({ room }) => {
             onComplete={() => {
               updateRoom({
                 variables: {
-                  room: { ...convertToInput(room), maintimer: null },
+                  room: {
+                    ...convertToInput(room),
+                    maintimer: null,
+                    members: roundMembers(room.members),
+                  },
                 },
               });
             }}
