@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Scrum Timer</title>
+        <title>Mob Timer</title>
         <meta name="description" content="The timer for mob programming" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
