@@ -1,24 +1,39 @@
 import React, { FC } from "react";
+import { gql, useMutation } from "@apollo/client";
 import { MdOutlineDriveEta, MdPlayCircleOutline } from "react-icons/md";
 import { ImRedo2 } from "react-icons/im";
-import CountdownTimer from "./CountdownTimer";
-import {
-  Box,
-  Button,
-  Center,
-  Flex,
-  HStack,
-  Spacer,
-  Text,
-  Stack,
-} from "@chakra-ui/react";
+import { DateTime } from "luxon";
+import { Box, Button, Center, HStack, Text, Stack } from "@chakra-ui/react";
+import Timer from "./Timer";
+import { convertToInput } from "../../lib/convertToInput";
+import TimerButton from "./TimerButton";
 
-const TimerControl: FC = () => {
+type TimerControlProps = {
+  room: Room;
+};
+
+const TimerControl: FC<TimerControlProps> = ({ room }) => {
+  const [updateRoom] = useMutation(gql`
+    mutation updateRoom($room: RoomInput!) {
+      updateRoom(room: $room) {
+        name
+      }
+    }
+  `);
   return (
     <Stack spacing="32px">
       <Box>
         <Center>
-          <CountdownTimer date={new Date(Date.now() + 10000)} />
+          <Timer
+            date={room.maintimer}
+            onComplete={() => {
+              updateRoom({
+                variables: {
+                  room: { ...convertToInput(room), maintimer: null },
+                },
+              });
+            }}
+          />
         </Center>
         <Center>
           <HStack alignItems="center" spacing="24px">
@@ -31,15 +46,29 @@ const TimerControl: FC = () => {
       </Box>
       <Center>
         <Stack>
-          <Button
-            size="lg"
-            width="300px"
-            colorScheme="blue"
-            variant="outline"
-            leftIcon={<MdPlayCircleOutline />}
-          >
-            Start
-          </Button>
+          <TimerButton
+            onStart={() => {
+              updateRoom({
+                variables: {
+                  room: {
+                    ...convertToInput(room),
+                    maintimer: DateTime.now().plus({ minute: room.worktime }),
+                  },
+                },
+              });
+            }}
+            onStop={() => {
+              updateRoom({
+                variables: {
+                  room: {
+                    ...convertToInput(room),
+                    maintimer: null,
+                  },
+                },
+              });
+            }}
+            isStop={room.maintimer !== null}
+          />
           <Button
             size="lg"
             width="300px"

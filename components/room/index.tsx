@@ -30,7 +30,7 @@ const Rooms: FC<RoomsProps> = ({ error, room }) => {
       <SettingDrawer room={room} />
       <Grid templateColumns="repeat(5, 1fr)" gap={4}>
         <GridItem colSpan={4}>
-          <TimerControl />
+          <TimerControl room={room} />
         </GridItem>
         <GridItem colEnd={6}>
           <MemberList members={room.members} />
