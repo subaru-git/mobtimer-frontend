@@ -19,25 +19,32 @@ const AppBar: FC = () => {
         <Flex>
           <Stack direction="row" spacing={4}>
             <Box>
-              <CopyToClipboard text={window.location.href}>
-                <Tooltip
-                  label={tooltip}
-                  onClose={() => {
-                    setTooltip("Copy to clipboard");
-                  }}
-                  closeOnClick={false}
-                >
-                  <Button
-                    leftIcon={<MdOutlinePersonAddAlt size={22} />}
-                    variant="solid"
-                    onClick={() => {
-                      setTooltip("Copied!");
+              <Tooltip
+                label={tooltip}
+                onClose={() => {
+                  setTooltip("Copy to clipboard");
+                }}
+                closeOnClick={false}
+              >
+                <Box>
+                  <CopyToClipboard
+                    text={window.location.href}
+                    onCopy={() => {
+                      console.log(window.location.href);
                     }}
                   >
-                    Invite
-                  </Button>
-                </Tooltip>
-              </CopyToClipboard>
+                    <Button
+                      leftIcon={<MdOutlinePersonAddAlt size={22} />}
+                      variant="solid"
+                      onClick={() => {
+                        setTooltip("Copied!");
+                      }}
+                    >
+                      Invite
+                    </Button>
+                  </CopyToClipboard>
+                </Box>
+              </Tooltip>
             </Box>
           </Stack>
         </Flex>
