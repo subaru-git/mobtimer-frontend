@@ -9,6 +9,7 @@ import MemberList from "./MemberList";
 import Topic from "./Topic";
 import SettingDrawer from "./SettingDrawer";
 import { convertToInput } from "../../lib/convertToInput";
+import BreakProgress from "./BreakProgress";
 
 type RoomsProps = {
   error: string;
@@ -23,7 +24,7 @@ const Rooms: FC<RoomsProps> = ({ error, room }) => {
       }
     }
   `);
-
+  console.log(room);
   return (
     <>
       <AppBar />
@@ -33,6 +34,7 @@ const Rooms: FC<RoomsProps> = ({ error, room }) => {
           <TimerControl room={room} />
         </GridItem>
         <GridItem colEnd={6}>
+          <BreakProgress current={room.count} total={room.breakcount} />
           <MemberList members={room.members} />
         </GridItem>
       </Grid>

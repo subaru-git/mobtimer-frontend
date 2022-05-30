@@ -3,6 +3,7 @@ export const convertToInput = (room: Room) => ({
   breaktime: room.breaktime,
   worktime: room.worktime,
   members: room.members,
+  count: room.count,
   topic: room.topic,
   name: room.name,
   maintimer: room.maintimer,

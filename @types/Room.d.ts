@@ -1,6 +1,7 @@
 interface Room {
   name: string;
   topic: string;
+  count: number;
   worktime: number;
   breaktime: number;
   breakcount: number;

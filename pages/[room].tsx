@@ -11,6 +11,7 @@ const Room: FC = () => {
       find(name: "${query.room}") {
         name
         topic
+        count
         worktime
         breaktime
         breakcount
@@ -26,6 +27,7 @@ const Room: FC = () => {
         createRoom(name: $name) {
           name
           topic
+          count
           worktime
           breaktime
           breakcount
@@ -63,6 +65,7 @@ const Room: FC = () => {
         roomUpdated(name: $name) {
           name
           topic
+          count
           worktime
           breaktime
           breakcount
