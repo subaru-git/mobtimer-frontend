@@ -1,13 +1,31 @@
 import React, { FC } from "react";
 import { gql, useMutation } from "@apollo/client";
-import { MdOutlineDriveEta, MdPlayCircleOutline } from "react-icons/md";
+import {
+  MdOutlineDriveEta,
+  MdOutlineSkipNext,
+  MdOutlineSkipPrevious,
+  MdPlayCircleOutline,
+} from "react-icons/md";
 import { ImRedo2 } from "react-icons/im";
 import { DateTime } from "luxon";
-import { Box, Button, Center, HStack, Text, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  HStack,
+  Text,
+  Stack,
+  Grid,
+  GridItem,
+} from "@chakra-ui/react";
 import Timer from "./Timer";
 import { convertToInput } from "../../lib/convertToInput";
 import TimerButton from "./TimerButton";
-import { roundMembers } from "../../lib/roundMembers";
+import {
+  rotationNextMembers,
+  rotationPreviousMembers,
+} from "../../lib/rotationMembers";
+import BreakProgress from "./BreakProgress";
 
 type TimerControlProps = {
   room: Room;
@@ -33,7 +51,8 @@ const TimerControl: FC<TimerControlProps> = ({ room }) => {
                   room: {
                     ...convertToInput(room),
                     maintimer: null,
-                    members: roundMembers(room.members),
+                    members: rotationNextMembers(room.members),
+                    count: (room.count + 1) % room.breakcount,
                   },
                 },
               });
@@ -50,40 +69,81 @@ const TimerControl: FC<TimerControlProps> = ({ room }) => {
         </Center>
       </Box>
       <Center>
-        <Stack>
-          <TimerButton
-            onStart={() => {
-              updateRoom({
-                variables: {
-                  room: {
-                    ...convertToInput(room),
-                    maintimer: DateTime.now().plus({ minute: room.worktime }),
-                  },
-                },
-              });
-            }}
-            onStop={() => {
-              updateRoom({
-                variables: {
-                  room: {
-                    ...convertToInput(room),
-                    maintimer: null,
-                  },
-                },
-              });
-            }}
-            isStop={room.maintimer !== null}
-          />
-          <Button
-            size="lg"
-            width="300px"
-            colorScheme="pink"
-            variant="outline"
-            leftIcon={<ImRedo2 />}
-          >
-            Skip
-          </Button>
-        </Stack>
+        <Grid templateColumns="repeat(4, 1fr)" gap={2}>
+          <GridItem colSpan={1} colStart={1}>
+            <Center>
+              <Button
+                size="lg"
+                width="50px"
+                colorScheme="blue"
+                variant="outline"
+                leftIcon={<MdOutlineSkipPrevious />}
+                onClick={() => {
+                  updateRoom({
+                    variables: {
+                      room: {
+                        ...convertToInput(room),
+                        maintimer: null,
+                        members: rotationPreviousMembers(room.members),
+                      },
+                    },
+                  });
+                }}
+              />
+            </Center>
+          </GridItem>
+          <GridItem colSpan={2} colStart={2}>
+            <Center>
+              <TimerButton
+                onStart={() => {
+                  updateRoom({
+                    variables: {
+                      room: {
+                        ...convertToInput(room),
+                        maintimer: DateTime.now().plus({
+                          minute: room.worktime,
+                        }),
+                      },
+                    },
+                  });
+                }}
+                onStop={() => {
+                  updateRoom({
+                    variables: {
+                      room: {
+                        ...convertToInput(room),
+                        maintimer: null,
+                      },
+                    },
+                  });
+                }}
+                isStop={room.maintimer !== null}
+              />
+            </Center>
+          </GridItem>
+          <GridItem colSpan={1} colStart={4}>
+            <Center>
+              <Button
+                size="lg"
+                width="50px"
+                colorScheme="blue"
+                variant="outline"
+                rightIcon={<MdOutlineSkipNext />}
+                onClick={() => {
+                  updateRoom({
+                    variables: {
+                      room: {
+                        ...convertToInput(room),
+                        maintimer: null,
+                        members: rotationNextMembers(room.members),
+                      },
+                    },
+                  });
+                }}
+              />
+            </Center>
+          </GridItem>
+        </Grid>
       </Center>
     </Stack>
   );

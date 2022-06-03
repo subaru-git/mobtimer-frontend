@@ -17,7 +17,7 @@ const TimerButton: FC<TimerControlProps> = ({
     return (
       <Button
         size="lg"
-        width="300px"
+        width="200px"
         colorScheme="green"
         variant="outline"
         leftIcon={<MdStop />}
@@ -30,7 +30,7 @@ const TimerButton: FC<TimerControlProps> = ({
   return (
     <Button
       size="lg"
-      width="300px"
+      width="200px"
       colorScheme="blue"
       variant="outline"
       leftIcon={<MdPlayCircleOutline />}

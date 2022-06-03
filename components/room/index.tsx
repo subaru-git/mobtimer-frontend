@@ -29,12 +29,27 @@ const Rooms: FC<RoomsProps> = ({ error, room }) => {
     <>
       <AppBar />
       <SettingDrawer room={room} />
-      <Grid templateColumns="repeat(5, 1fr)" gap={4}>
+      <Grid templateColumns="repeat(6, 1fr)" gap={4}>
         <GridItem colSpan={4}>
           <TimerControl room={room} />
         </GridItem>
-        <GridItem colEnd={6}>
-          <BreakProgress current={room.count} total={room.breakcount} />
+        <GridItem>
+          <BreakProgress
+            current={room.count}
+            total={room.breakcount}
+            onChange={(value: number) => {
+              updateRoom({
+                variables: {
+                  room: {
+                    ...convertToInput(room),
+                    count: value,
+                  },
+                },
+              });
+            }}
+          />
+        </GridItem>
+        <GridItem>
           <MemberList members={room.members} />
         </GridItem>
       </Grid>
