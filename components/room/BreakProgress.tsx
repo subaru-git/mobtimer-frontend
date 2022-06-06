@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import {
   Center,
   CircularProgress,
@@ -25,6 +25,7 @@ const BreakProgress: FC<BreakProgressProps> = ({
 }) => {
   const [value, setValue] = React.useState(`${current}`);
   const color = current === total ? "pink" : "blue";
+  useEffect(() => setValue(`${current}`), [current]);
   return (
     <CircularProgress
       value={(current * 100) / total}

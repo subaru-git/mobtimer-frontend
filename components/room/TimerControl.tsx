@@ -39,6 +39,7 @@ const TimerControl: FC<TimerControlProps> = ({ room }) => {
       }
     }
   `);
+  const isBreak = room.count === room.breakcount;
   return (
     <Stack spacing="32px">
       <Box>
@@ -51,8 +52,10 @@ const TimerControl: FC<TimerControlProps> = ({ room }) => {
                   room: {
                     ...convertToInput(room),
                     maintimer: null,
-                    members: rotationNextMembers(room.members),
-                    count: (room.count + 1) % room.breakcount,
+                    members: isBreak
+                      ? room.members
+                      : rotationNextMembers(room.members),
+                    count: (room.count + 1) % (room.breakcount + 1),
                   },
                 },
               });
@@ -64,7 +67,7 @@ const TimerControl: FC<TimerControlProps> = ({ room }) => {
             <Text fontSize="4xl">
               <MdOutlineDriveEta />
             </Text>
-            <Text fontSize="4xl">The next driver is you!</Text>
+            <Text fontSize="4xl">{isBreak ? "break" : room.members[0]}</Text>
           </HStack>
         </Center>
       </Box>

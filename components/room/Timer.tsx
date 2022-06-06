@@ -7,7 +7,7 @@ type TimerProps = {
 };
 
 const Timer: FC<TimerProps> = ({ date, onComplete = () => {} }) => {
-  if (!date) return <p>next</p>;
+  if (!date) return <></>;
   return <CountdownTimer date={date} onComplete={onComplete} />;
 };
 
