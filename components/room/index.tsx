@@ -3,7 +3,7 @@ import { useSubscription, gql, useMutation } from "@apollo/client";
 import { Button, Divider, Flex, Grid, GridItem, Input } from "@chakra-ui/react";
 import CountdownTimer from "./CountdownTimer";
 import SettingSlider from "./SettingSlider";
-import AppBar from "./AppBar";
+import AppBar from "../pages/AppBar";
 import TimerControl from "./TimerControl";
 import MemberList from "./MemberList";
 import Topic from "./Topic";

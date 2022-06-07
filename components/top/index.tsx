@@ -13,7 +13,8 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-let AppBar = dynamic(() => import("../room/AppBar"), { ssr: false });
+import Footer from "../pages/Footer";
+let AppBar = dynamic(() => import("../pages/AppBar"), { ssr: false });
 
 const Top: FC = () => {
   const [name, setName] = useState("");
@@ -21,7 +22,7 @@ const Top: FC = () => {
   return (
     <>
       <AppBar top={true} />
-      <Center w="100%" h="100vh">
+      <Center w="100%" h="calc(100vh - 56px - 24px)">
         <VStack>
           <Image src="/mobtimer-logo.svg" alt="Logo" boxSize="250px" />
           <HStack>
@@ -45,6 +46,7 @@ const Top: FC = () => {
           </HStack>
         </VStack>
       </Center>
+      <Footer />
     </>
   );
 };
