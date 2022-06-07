@@ -2,6 +2,7 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 import Rooms from "../components/room";
+import Loading from "../components/room/Loading";
 
 let created = false;
 const Room: FC = () => {
@@ -47,7 +48,7 @@ const Room: FC = () => {
       },
     }
   );
-  if (loading || mutation.loading) return <p>Loading...</p>;
+  if (loading || mutation.loading) return <Loading />;
   if (error || mutation.error) {
     console.error(error);
     console.error(mutation.error);
