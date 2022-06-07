@@ -7,6 +7,7 @@ export const convertToInput = (room: Room) => ({
   topic: room.topic,
   name: room.name,
   maintimer: room.maintimer,
+  simpletimer: room.simpletimer,
   createdAt: room.createdAt,
   updatedAt: room.updatedAt,
 });

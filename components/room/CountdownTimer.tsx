@@ -4,11 +4,13 @@ import { Text } from "@chakra-ui/react";
 
 type CountdownTimerProps = {
   date: Date;
+  size: "small" | "large";
   onComplete?: () => void;
 };
 
 const CountdownTimer: FC<CountdownTimerProps> = ({
   date,
+  size,
   onComplete = () => {},
 }) => {
   return (
@@ -17,7 +19,7 @@ const CountdownTimer: FC<CountdownTimerProps> = ({
       renderer={({ minutes, seconds }) => {
         const text = `${zeroPad(minutes)} : ${zeroPad(seconds)}`;
 
-        return <Text fontSize="6xl">{text}</Text>;
+        return <Text fontSize={size === "large" ? "6xl" : "2xl"}>{text}</Text>;
       }}
       onComplete={() => {
         onComplete();

@@ -1,6 +1,6 @@
 import React, { FC, useRef, useState } from "react";
 import { useSubscription, gql, useMutation } from "@apollo/client";
-import { Button, Flex, Grid, GridItem, Input } from "@chakra-ui/react";
+import { Button, Divider, Flex, Grid, GridItem, Input } from "@chakra-ui/react";
 import CountdownTimer from "./CountdownTimer";
 import SettingSlider from "./SettingSlider";
 import AppBar from "./AppBar";
@@ -10,6 +10,8 @@ import Topic from "./Topic";
 import SettingDrawer from "./SettingDrawer";
 import { convertToInput } from "../../lib/convertToInput";
 import BreakProgress from "./BreakProgress";
+import SimpleTimer from "./SimpleTimer";
+import { DateTime } from "luxon";
 
 type RoomsProps = {
   error: string;
@@ -59,6 +61,32 @@ const Rooms: FC<RoomsProps> = ({ error, room }) => {
           updateRoom({
             variables: {
               room: { ...convertToInput(room), topic },
+            },
+          });
+        }}
+      />
+      <Divider my={8} />
+      <SimpleTimer
+        date={room.simpletimer}
+        onStart={(value: number) => {
+          updateRoom({
+            variables: {
+              room: {
+                ...convertToInput(room),
+                simpletimer: DateTime.now().plus({
+                  minute: value,
+                }),
+              },
+            },
+          });
+        }}
+        onComplete={() => {
+          updateRoom({
+            variables: {
+              room: {
+                ...convertToInput(room),
+                simpletimer: null,
+              },
             },
           });
         }}

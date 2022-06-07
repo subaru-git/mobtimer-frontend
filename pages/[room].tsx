@@ -17,6 +17,7 @@ const Room: FC = () => {
         breakcount
         members
         maintimer
+        simpletimer
         createdAt
         updatedAt
       }
@@ -33,6 +34,7 @@ const Room: FC = () => {
           breakcount
           members
           maintimer
+          simpletimer
           createdAt
           updatedAt
         }
@@ -71,6 +73,7 @@ const Room: FC = () => {
           breakcount
           members
           maintimer
+          simpletimer
           createdAt
           updatedAt
         }

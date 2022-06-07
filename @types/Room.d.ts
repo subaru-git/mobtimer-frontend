@@ -7,6 +7,7 @@ interface Room {
   breakcount: number;
   members: string[];
   maintimer: Date;
+  simpletimer: Date;
   createdAt: Date;
   updatedAt: Date;
 }

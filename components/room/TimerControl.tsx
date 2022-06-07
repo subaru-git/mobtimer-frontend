@@ -46,6 +46,8 @@ const TimerControl: FC<TimerControlProps> = ({ room }) => {
         <Center>
           <Timer
             date={room.maintimer}
+            size="large"
+            message="Time is up! Change the driver or take a break!"
             onComplete={() => {
               updateRoom({
                 variables: {
