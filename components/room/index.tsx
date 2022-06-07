@@ -37,7 +37,7 @@ const Rooms: FC<RoomsProps> = ({ error, room }) => {
           <BreakProgress
             current={room.count}
             total={room.breakcount}
-            onChange={(value: number) => {
+            updateCurrent={(value: number) => {
               updateRoom({
                 variables: {
                   room: {
