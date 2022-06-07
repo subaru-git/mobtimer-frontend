@@ -22,7 +22,7 @@ const Meta: FC = () => {
       <meta property="og:site_name" content="Mob Timer" />
       <meta
         property="og:image"
-        content="https://github.com/subaru-git/mob-timer/blob/master/public/card.png?raw=true"
+        content="https://github.com/subaru-git/mobtimer-frontend/blob/main/public/card.png?raw=true"
       />
       <meta name="twitter:card" content="summary" />
       <meta name="robots" content="noindex" />
