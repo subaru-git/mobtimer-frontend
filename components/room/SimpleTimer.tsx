@@ -48,7 +48,14 @@ const SimpleTimer: FC<SimpleTimerProps> = ({ date, onStart, onComplete }) => {
         </NumberInput>
       )}
       {date ? (
-        <Button onClick={onComplete} colorScheme="orange" variant="outline">
+        <Button
+          onClick={() => {
+            onComplete();
+            document.title = "Mob Timer";
+          }}
+          colorScheme="orange"
+          variant="outline"
+        >
           Stop
         </Button>
       ) : (

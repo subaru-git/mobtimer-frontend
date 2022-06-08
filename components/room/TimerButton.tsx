@@ -21,7 +21,10 @@ const TimerButton: FC<TimerControlProps> = ({
         colorScheme="green"
         variant="outline"
         leftIcon={<MdStop />}
-        onClick={onStop}
+        onClick={() => {
+          onStop();
+          document.title = "Mob Timer";
+        }}
       >
         Stop
       </Button>
