@@ -22,9 +22,9 @@
     "react-beautiful-dnd": "^13.1.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-countdown": "^2.3.2",
+    "react-desktop-notification": "^1.0.9",
     "react-dom": "17.0.2",
-    "react-icons": "^4.3.1",
-    "react-web-notification": "^0.8.0"
+    "react-icons": "^4.3.1"
   },
   "devDependencies": {
     "@types/luxon": "^2.3.2",

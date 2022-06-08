@@ -26,13 +26,6 @@ const Meta: FC = () => {
       />
       <meta name="twitter:card" content="summary" />
       <meta name="robots" content="noindex" />
-      <script
-        data-ad-client="ca-pub-4685158362902526"
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-      ></script>
-      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-      <script src="https://widget.plog.cash/plog.js"></script>
     </Head>
   );
 };

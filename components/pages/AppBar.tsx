@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
-import { Box, Button, Flex, Heading, Stack, Tooltip } from "@chakra-ui/react";
+import Link from "next/link";
+import { Box, Button, Flex, Heading, HStack, Tooltip } from "@chakra-ui/react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { MdOutlinePersonAddAlt } from "react-icons/md";
-import Link from "next/link";
 
 type AppBarProps = {
   top?: boolean;
@@ -25,38 +25,31 @@ const AppBar: FC<AppBarProps> = ({ top = false }) => {
           </Heading>
         </Box>
         <Flex>
-          <Stack direction="row" spacing={4}>
+          <HStack spacing={4}>
             {top ? null : (
-              <Box>
-                <Tooltip
-                  label={tooltip}
-                  onClose={() => {
-                    setTooltip("Copy to clipboard");
-                  }}
-                  closeOnClick={false}
-                >
-                  <Box>
-                    <CopyToClipboard
-                      text={window.location.href}
-                      onCopy={() => {
-                        console.log(window.location.href);
+              <Tooltip
+                label={tooltip}
+                onClose={() => {
+                  setTooltip("Copy to clipboard");
+                }}
+                closeOnClick={false}
+              >
+                <Box>
+                  <CopyToClipboard text={window.location.href}>
+                    <Button
+                      leftIcon={<MdOutlinePersonAddAlt size={22} />}
+                      variant="solid"
+                      onClick={() => {
+                        setTooltip("Copied!");
                       }}
                     >
-                      <Button
-                        leftIcon={<MdOutlinePersonAddAlt size={22} />}
-                        variant="solid"
-                        onClick={() => {
-                          setTooltip("Copied!");
-                        }}
-                      >
-                        Invite
-                      </Button>
-                    </CopyToClipboard>
-                  </Box>
-                </Tooltip>
-              </Box>
+                      Invite
+                    </Button>
+                  </CopyToClipboard>
+                </Box>
+              </Tooltip>
             )}
-          </Stack>
+          </HStack>
         </Flex>
       </Flex>
     </Box>

@@ -4,6 +4,9 @@ const nextConfig = {
   env: {
     SERVER_HTTP_URL: process.env.SERVER_HTTP_URL,
     SERVER_WS_URL: process.env.SERVER_WS_URL,
+    COPY_RIGHT: process.env.COPY_RIGHT,
+    GITHUB_URL: process.env.GITHUB_URL,
+    TWITTER_URL: process.env.TWITTER_URL,
   },
 };
 
