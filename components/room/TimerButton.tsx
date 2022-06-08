@@ -13,34 +13,35 @@ const TimerButton: FC<TimerControlProps> = ({
   onStop,
   isStop = false,
 }) => {
-  if (isStop) {
-    return (
-      <Button
-        size="lg"
-        width="200px"
-        colorScheme="green"
-        variant="outline"
-        leftIcon={<MdStop />}
-        onClick={() => {
-          onStop();
-          document.title = "Mob Timer";
-        }}
-      >
-        Stop
-      </Button>
-    );
-  }
   return (
-    <Button
-      size="lg"
-      width="200px"
-      colorScheme="blue"
-      variant="outline"
-      leftIcon={<MdPlayCircleOutline />}
-      onClick={onStart}
-    >
-      Start
-    </Button>
+    <>
+      {isStop ? (
+        <Button
+          size="lg"
+          width="200px"
+          colorScheme="green"
+          variant="outline"
+          leftIcon={<MdStop />}
+          onClick={() => {
+            onStop();
+            document.title = "Mob Timer";
+          }}
+        >
+          Stop
+        </Button>
+      ) : (
+        <Button
+          size="lg"
+          width="200px"
+          colorScheme="blue"
+          variant="outline"
+          leftIcon={<MdPlayCircleOutline />}
+          onClick={onStart}
+        >
+          Start
+        </Button>
+      )}
+    </>
   );
 };
 
