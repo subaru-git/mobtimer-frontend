@@ -1,7 +1,7 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Input, Text, IconButton, Flex, Spacer } from "@chakra-ui/react";
-import { MdOutlineDeleteForever } from "react-icons/md";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { MdOutlineDeleteForever } from "react-icons/md";
 
 type MemberSettingProps = {
   members: string[];
@@ -9,7 +9,9 @@ type MemberSettingProps = {
 };
 
 const MemberSetting: FC<MemberSettingProps> = ({ members, updateMember }) => {
-  const [add, setAdd] = useState("");
+  const [newMember, setNewMember] = useState("");
+  const [membersCopy, setMembersCopy] = useState(members);
+  useEffect(() => setMembersCopy(members), [members]);
   const reorder = (list: string[], start: number, end: number) => {
     const result = Array.from(list);
     const [removed] = result.splice(start, 1);
@@ -26,18 +28,19 @@ const MemberSetting: FC<MemberSettingProps> = ({ members, updateMember }) => {
       result.destination.index
     );
     updateMember(newMembers);
+    setMembersCopy(newMembers);
   };
   return (
     <>
       <Text as="sub">Members</Text>
       <Input
         onChange={(e) => {
-          setAdd(e.target.value);
+          setNewMember(e.target.value);
         }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            updateMember([...members, add]);
-            setAdd("");
+            updateMember([...membersCopy, newMember]);
+            setNewMember("");
             e.currentTarget.value = "";
           }
         }}
@@ -45,15 +48,15 @@ const MemberSetting: FC<MemberSettingProps> = ({ members, updateMember }) => {
       />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
+          {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
-              {members.map((member, index) => (
+              {membersCopy.map((member, index) => (
                 <Draggable
                   key={`${member}-${index}`}
                   draggableId={`${member}-${index}`}
                   index={index}
                 >
-                  {(provided, snapshot) => (
+                  {(provided) => (
                     <div
                       ref={provided.innerRef}
                       {...provided.draggableProps}
@@ -69,7 +72,9 @@ const MemberSetting: FC<MemberSettingProps> = ({ members, updateMember }) => {
                           variant="ghost"
                           icon={<MdOutlineDeleteForever />}
                           onClick={(e) => {
-                            updateMember(members.filter((_, i) => i !== index));
+                            updateMember(
+                              membersCopy.filter((_, i) => i !== index)
+                            );
                           }}
                         />
                       </Flex>

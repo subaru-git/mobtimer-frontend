@@ -1,8 +1,7 @@
+import React, { FC } from "react";
 import {
   Box,
   Button,
-  Grid,
-  GridItem,
   HStack,
   NumberDecrementStepper,
   NumberIncrementStepper,
@@ -10,9 +9,7 @@ import {
   NumberInputField,
   NumberInputStepper,
 } from "@chakra-ui/react";
-import React, { FC } from "react";
 import { MdOutlineTimer } from "react-icons/md";
-import CountdownTimer from "./CountdownTimer";
 import Timer from "./Timer";
 
 type SimpleTimerProps = {
@@ -41,7 +38,7 @@ const SimpleTimer: FC<SimpleTimerProps> = ({ date, onStart, onComplete }) => {
           step={1}
           value={value}
           onChange={(e) => setValue(parseInt(e))}
-          w={"150px"}
+          w="150px"
         >
           <NumberInputField />
           <NumberInputStepper>

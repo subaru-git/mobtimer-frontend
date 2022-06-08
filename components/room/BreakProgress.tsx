@@ -7,12 +7,7 @@ import {
   Flex,
   Grid,
   GridItem,
-  Input,
-  InputGroup,
-  InputRightAddon,
-  NumberInput,
-  NumberInputField,
-  Stack,
+  Text,
   VStack,
 } from "@chakra-ui/react";
 
@@ -40,35 +35,31 @@ const BreakProgress: FC<BreakProgressProps> = ({
         >
           <CircularProgressLabel alignContent="center">
             <Center>
-              <Flex alignItems="center">
-                <div style={{ fontSize: "small" }}>
-                  <div style={{ display: "flex" }}>
-                    <input
-                      type="number"
-                      value={value}
-                      style={{ width: "16px" }}
-                      max={total}
-                      min={0}
-                      onChange={(e) => {
-                        setValue(e.target.value);
-                        if (!e.target.value) {
-                          updateCurrent(0);
-                          return;
-                        }
-                        let input = parseInt(e.target.value);
-                        if (input > total) input = total;
-                        if (input < 0) input = 0;
-                        setValue(`${input}`);
-                        updateCurrent(input);
-                      }}
-                      onBlur={(e) => {
-                        if (e.target.value === "") setValue("0");
-                      }}
-                    />
-                    <div style={{ paddingRight: "8px" }}>/</div>
-                    <div>4</div>
-                  </div>
-                </div>
+              <Flex fontSize="small">
+                <input
+                  type="number"
+                  value={value}
+                  style={{ width: "16px" }}
+                  max={total}
+                  min={0}
+                  onChange={(e) => {
+                    setValue(e.target.value);
+                    if (!e.target.value) {
+                      updateCurrent(0);
+                      return;
+                    }
+                    let input = parseInt(e.target.value);
+                    if (input > total) input = total;
+                    if (input < 0) input = 0;
+                    setValue(`${input}`);
+                    updateCurrent(input);
+                  }}
+                  onBlur={(e) => {
+                    if (e.target.value === "") setValue("0");
+                  }}
+                />
+                <Text pr={2}>/</Text>
+                <Text>4</Text>
               </Flex>
             </Center>
           </CircularProgressLabel>

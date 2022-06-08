@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import CountdownTimer from "./CountdownTimer";
 import Notifier from "react-desktop-notification";
+import CountdownTimer from "./CountdownTimer";
 
 type TimerProps = {
   date?: Date;

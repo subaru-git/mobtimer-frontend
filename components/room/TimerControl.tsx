@@ -1,12 +1,5 @@
 import React, { FC } from "react";
 import { gql, useMutation } from "@apollo/client";
-import {
-  MdOutlineDriveEta,
-  MdOutlineSkipNext,
-  MdOutlineSkipPrevious,
-  MdPlayCircleOutline,
-} from "react-icons/md";
-import { ImRedo2 } from "react-icons/im";
 import { DateTime } from "luxon";
 import {
   Box,
@@ -18,14 +11,18 @@ import {
   Grid,
   GridItem,
 } from "@chakra-ui/react";
+import {
+  MdOutlineDriveEta,
+  MdOutlineSkipNext,
+  MdOutlineSkipPrevious,
+} from "react-icons/md";
 import Timer from "./Timer";
-import { convertToInput } from "../../lib/convertToInput";
 import TimerButton from "./TimerButton";
+import { convertToInput } from "../../lib/convertToInput";
 import {
   rotationNextMembers,
   rotationPreviousMembers,
 } from "../../lib/rotationMembers";
-import BreakProgress from "./BreakProgress";
 
 type TimerControlProps = {
   room: Room;

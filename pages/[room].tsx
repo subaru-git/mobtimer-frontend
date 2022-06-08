@@ -88,7 +88,7 @@ const Room: FC = () => {
       });
     },
   });
-  return <Rooms room={data.find} error={""} />;
+  return <Rooms room={data.find} />;
 };
 
 export default Room;

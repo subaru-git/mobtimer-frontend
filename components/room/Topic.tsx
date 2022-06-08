@@ -1,5 +1,5 @@
-import { Button, Center, Heading, Input, Stack } from "@chakra-ui/react";
 import React, { FC } from "react";
+import { Center, Heading, Input, Stack } from "@chakra-ui/react";
 
 type TopicProps = {
   topic: string;

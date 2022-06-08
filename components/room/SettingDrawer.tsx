@@ -1,3 +1,5 @@
+import React, { FC } from "react";
+import { gql, useMutation } from "@apollo/client";
 import {
   Button,
   Drawer,
@@ -14,9 +16,7 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { FC } from "react";
 import { MdBuild } from "react-icons/md";
-import { gql, useMutation } from "@apollo/client";
 import MemberSetting from "./MemberSetting";
 import SettingSlider from "./SettingSlider";
 import { convertToInput } from "../../lib/convertToInput";

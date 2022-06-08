@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import Countdown, { zeroPad } from "react-countdown";
 import { Text } from "@chakra-ui/react";
+import Countdown, { zeroPad } from "react-countdown";
 
 type CountdownTimerProps = {
   date: Date;
@@ -18,7 +18,6 @@ const CountdownTimer: FC<CountdownTimerProps> = ({
       date={date}
       renderer={({ minutes, seconds }) => {
         const text = `${zeroPad(minutes)} : ${zeroPad(seconds)}`;
-
         return <Text fontSize={size === "large" ? "6xl" : "2xl"}>{text}</Text>;
       }}
       onComplete={() => {
