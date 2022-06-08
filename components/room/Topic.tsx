@@ -9,9 +9,9 @@ type TopicProps = {
 const Topic: FC<TopicProps> = ({ topic, updateTopic }) => {
   const [newTopic, setNewTopic] = React.useState("");
   return (
-    <Stack spacing={4}>
+    <Stack spacing={4} py={32}>
       <Center>
-        <Heading as="h2" isTruncated>
+        <Heading as="h2" size="3xl" isTruncated>
           {topic}
         </Heading>
       </Center>
