@@ -7,6 +7,7 @@ const nextConfig = {
     COPY_RIGHT: process.env.COPY_RIGHT,
     GITHUB_URL: process.env.GITHUB_URL,
     TWITTER_URL: process.env.TWITTER_URL,
+    GA_TRACKING_ID: process.env.GA_TRACKING_ID,
   },
 };
 
