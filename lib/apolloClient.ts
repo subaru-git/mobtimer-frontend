@@ -11,18 +11,7 @@ import { createClient } from "graphql-ws";
 
 const httpLink = new HttpLink({
   uri: process.env.SERVER_HTTP_URL,
-  fetch: (input, init) => {
-    const body = init?.body && JSON.parse(init.body.toString());
-    // const operations = body.map((ops: any) => ops.operationName);
-
-    console.log({
-      startTime: new Date(),
-      url: input,
-      method: init?.method,
-      body,
-    });
-    return fetch(input, init);
-  },
+  fetch: (input, init) => fetch(input, init),
 });
 const wsLink =
   typeof window !== "undefined"

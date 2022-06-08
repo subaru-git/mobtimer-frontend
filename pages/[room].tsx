@@ -1,6 +1,6 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
 import React, { FC } from "react";
+import { useRouter } from "next/router";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import Rooms from "../components/room";
 import Loading from "../components/room/Loading";
 
@@ -60,7 +60,7 @@ const Room: FC = () => {
       createRoom({ variables: { name: query.room } });
       created = true;
     }
-    return <p>Creating room...</p>;
+    return <Loading />;
   }
   subscribeToMore({
     document: gql`

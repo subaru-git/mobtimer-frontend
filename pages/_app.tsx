@@ -7,7 +7,7 @@ import { createApolloClient } from "../lib/apolloClient";
 import { GA_TRACKING_ID, pageview } from "../lib/gtag";
 import Meta from "../components/pages/Meta";
 
-export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+const App = ({ Component, pageProps }: AppProps): JSX.Element => {
   const router = useRouter();
   useEffect(() => {
     if (!GA_TRACKING_ID) return;
@@ -29,4 +29,6 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       </ApolloProvider>
     </ChakraProvider>
   );
-}
+};
+
+export default App;
