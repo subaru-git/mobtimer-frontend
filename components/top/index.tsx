@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import dynamic from "next/dynamic";
-import { Image, VStack, Center, Flex } from "@chakra-ui/react";
+import { VStack, Center, Flex } from "@chakra-ui/react";
 let AppBar = dynamic(() => import("../common/AppBar"), { ssr: false });
 let RoomNameInput = dynamic(() => import("./RoomNameInput"), { ssr: false });
 import Footer from "../common/Footer";
