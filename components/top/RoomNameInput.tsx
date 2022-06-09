@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 
-const RoomInput: FC = () => {
+const RoomNameInput: FC = () => {
   const [name, setName] = useState("");
   const router = useRouter();
   return (
@@ -42,4 +42,4 @@ const RoomInput: FC = () => {
   );
 };
 
-export default RoomInput;
+export default RoomNameInput;

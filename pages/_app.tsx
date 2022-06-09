@@ -5,7 +5,7 @@ import { ApolloProvider } from "@apollo/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { createApolloClient } from "../lib/apolloClient";
 import { GA_TRACKING_ID, pageview } from "../lib/gtag";
-import Meta from "../components/pages/Meta";
+import Meta from "../components/common/Meta";
 
 const App = ({ Component, pageProps }: AppProps): JSX.Element => {
   const router = useRouter();

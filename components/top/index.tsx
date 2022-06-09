@@ -1,10 +1,9 @@
 import React, { FC, useState } from "react";
-import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { Image, VStack, Center, Flex } from "@chakra-ui/react";
-let AppBar = dynamic(() => import("../pages/AppBar"), { ssr: false });
-let RoomInput = dynamic(() => import("./RoomInput"), { ssr: false });
-import Footer from "../pages/Footer";
+let AppBar = dynamic(() => import("../common/AppBar"), { ssr: false });
+let RoomNameInput = dynamic(() => import("./RoomNameInput"), { ssr: false });
+import Footer from "../common/Footer";
 
 const Top: FC = () => {
   return (
@@ -13,7 +12,7 @@ const Top: FC = () => {
       <Center>
         <VStack>
           <Image src="/mobtimer-logo.svg" alt="Logo" boxSize="250px" m={16} />
-          <RoomInput />
+          <RoomNameInput />
         </VStack>
       </Center>
       <Footer />
