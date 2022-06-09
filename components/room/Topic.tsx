@@ -1,18 +1,26 @@
 import React, { FC } from "react";
+import { gql, useMutation } from "@apollo/client";
 import { Center, Heading, Input, Stack } from "@chakra-ui/react";
+import { convertToInput } from "../../lib/convertToInput";
 
 type TopicProps = {
-  topic: string;
-  updateTopic: (topic: string) => void;
+  room: Room;
 };
 
-const Topic: FC<TopicProps> = ({ topic, updateTopic }) => {
+const Topic: FC<TopicProps> = ({ room }) => {
+  const [updateRoom] = useMutation(gql`
+    mutation updateRoom($room: RoomInput!) {
+      updateRoom(room: $room) {
+        name
+      }
+    }
+  `);
   const [newTopic, setNewTopic] = React.useState("");
   return (
     <Stack spacing={4} py={32}>
       <Center>
         <Heading as="h2" size="3xl" isTruncated>
-          {topic}
+          {room.topic}
         </Heading>
       </Center>
       <Center>
@@ -22,7 +30,11 @@ const Topic: FC<TopicProps> = ({ topic, updateTopic }) => {
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              updateTopic(newTopic);
+              updateRoom({
+                variables: {
+                  room: { ...convertToInput(room), topic: newTopic },
+                },
+              });
               setNewTopic("");
               e.currentTarget.value = "";
             }

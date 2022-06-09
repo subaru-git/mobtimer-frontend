@@ -23,7 +23,7 @@ const BreakProgress: FC<BreakProgressProps> = ({
   updateCurrent,
 }) => {
   const [value, setValue] = React.useState(`${current}`);
-  const color = current === total ? "pink" : "blue";
+  const color = current === total ? "pink" : "lightblue";
   useEffect(() => setValue(`${current}`), [current]);
   return (
     <VStack gap={4}>

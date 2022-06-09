@@ -8,7 +8,7 @@ const Loading: FC = () => {
         thickness="4px"
         speed="0.5s"
         emptyColor="gray.200"
-        color="blue"
+        color="lightblue"
         size="xl"
       />
     </Center>
