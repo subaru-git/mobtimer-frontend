@@ -9,9 +9,6 @@ import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { createClient } from "graphql-ws";
 
-console.log("http", process.env.SERVER_HTTP_URL);
-console.log("ws", process.env.SERVER_WS_URL);
-
 const httpLink = new HttpLink({
   uri: process.env.SERVER_HTTP_URL,
   fetch: (input, init) => fetch(input, init),
