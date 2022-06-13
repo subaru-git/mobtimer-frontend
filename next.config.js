@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    NEXT_PUBLIC_SERVER_HTTP_URL: process.env.SERVER_HTTP_URL,
-    NEXT_PUBLIC_SERVER_WS_URL: process.env.SERVER_WS_URL,
+    SERVER_HTTP_URL: process.env.SERVER_HTTP_URL,
+    SERVER_WS_URL: process.env.SERVER_WS_URL,
     COPY_RIGHT: process.env.COPY_RIGHT,
     GITHUB_URL: process.env.GITHUB_URL,
     TWITTER_URL: process.env.TWITTER_URL,
