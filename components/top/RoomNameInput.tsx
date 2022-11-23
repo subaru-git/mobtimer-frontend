@@ -17,7 +17,7 @@ const RoomNameInput: FC = () => {
       <InputGroup>
         <InputLeftAddon
           children={window.location.href}
-          bg="teal.300"
+          bg="gray.300"
           color="white"
         />
         <Input
@@ -25,6 +25,7 @@ const RoomNameInput: FC = () => {
           onChange={(e) => {
             setName(e.target.value);
           }}
+          disabled
         />
       </InputGroup>
       <Button
