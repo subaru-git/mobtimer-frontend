@@ -17,7 +17,7 @@ const RoomNameInput: FC = () => {
       <InputGroup>
         <InputLeftAddon
           children={window.location.href}
-          bg="gray.300"
+          bg="gray.400"
           color="white"
         />
         <Input
