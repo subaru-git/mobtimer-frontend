@@ -1,6 +1,6 @@
 # mob timer frontend
 
-This application is a timer for mobbing.
+This application is a sharing timer for mobbing.
 
 [Backend](https://github.com/subaru-git/mobtimer-backend)
 
